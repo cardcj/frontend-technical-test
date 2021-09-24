@@ -14,27 +14,20 @@ export default function VehicleList() {
     return <div data-testid="error">{ error }</div>;
   }
 
+  console.log(vehicles);
+
   return (
     <div data-testid="results">
-      <p>List of vehicles will be displayed here</p>
-      <p>
-        Visit
-        <a href="/api/vehicles.json" target="_blank"> /api/vehicles.json</a>
-        {' '}
-        (main endpoint)
-      </p>
-      <p>
-        Visit
-        <a href="/api/vehicle_fpace.json" target="_blank">/api/vehicle_fpace.json</a>
-        {' '}
-        (detail endpoint - apiUrl)
-      </p>
-      <p>
-        Visit
-        <a href="/api/vehicle_xf.json" target="_blank">/api/vehicle_xf.json</a>
-        {' '}
-        (vehicle without any price)
-      </p>
+      {
+        vehicles.map((vehicle) => (
+            <li className="VehicleListing" key={vehicle.id}>
+              <img src={vehicle.media[0].url} alt={vehicle.media[0].name} />
+              <article>
+                <h1>{vehicle.id}</h1>
+              </article>
+            </li>
+          ))
+      }
     </div>
   );
 }
